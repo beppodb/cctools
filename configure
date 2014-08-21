@@ -496,9 +496,18 @@ then
 			ccflags="${ccflags} -I$d"
 		done
 
+	elif library_search RodsAPIs /usr/lib/irods
+	then
+		# detected binary irods 4.x installation
+		ccflags="${ccflags} -DHAS_IRODS -DIRODS_USES_PLUGINS -DIRODS_USES_HPP"
+		ccflags="${ccflags} -I/usr/include/irods"
+		ldflags="-rdynamic -L/usr/lib/irods"
+		boost_lib="/usr/lib/irods"
+		external_archives="${external_archives} ${boost_lib}/libboost_filesystem.a ${boost_lib}/libboost_thread.a ${boost_lib}/libboost_system.a"
+
 	elif library_search RodsAPIs "${irods_path}/iRODS/lib/core/obj"
 	then
-		# detected irods 4.x installation
+		# detected source irods 4.x installation
 
 		# irods 4.x uses .so plugins which are found in /var/lib/irods.
 		# These require the parrot is linked with -rdynamic so that
