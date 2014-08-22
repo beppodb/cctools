@@ -503,7 +503,7 @@ then
 		ccflags="${ccflags} -I/usr/include/irods"
 		ldflags="-rdynamic -L/usr/lib/irods"
 		boost_lib="/usr/lib/irods"
-		external_archives="${external_archives} ${boost_lib}/libboost_filesystem.a ${boost_lib}/libboost_thread.a ${boost_lib}/libboost_system.a"
+		external_archives="${external_archives} ${boost_lib}/libboost_filesystem.a ${boost_lib}/libboost_thread.a ${boost_lib}/libboost_system.a ${boost_lib}/libboost_regex.a"
 
 	elif library_search RodsAPIs "${irods_path}/iRODS/lib/core/obj"
 	then
